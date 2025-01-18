@@ -205,12 +205,12 @@
    - `call`: Gọi hàm ngay lập tức, gán `this` và truyền tham số trực tiếp.
 
       ```javascript
-      ` greet.call(person, 'John');`
+         greet.call(person, 'John');
 
    - `apply`: Giống `call`, nhưng tham số truyền vào là một mảng.
 
       ```javascript
-      `greet.apply(person, ['John', 30]);`
+       greet.apply(person, ['John', 30]);
 
    - `bind`: Gán this và trả về hàm mới, có thể gọi sau này với tham số.
 
@@ -244,7 +244,7 @@
    - **Event Loop**: Kiểm tra và xử lý các task trong queue. Khi call stack trống, event loop sẽ chuyển task từ **Task Queue** sang call stack.
 
     **Microtask Queue**:
-   - **Microtasks** (như `Promise.then()`) có độ ưu tiên cao hơn **Task Queue** (như `setTimeout`).
+   - Microtasks (như `Promise.then()`) có độ ưu tiên cao hơn **Task Queue** (như `setTimeout`).
    - Sau khi call stack trống, event loop sẽ xử lý tất cả microtasks trước khi tiếp tục với các task trong queue.
 
    **Quy trình**: 
