@@ -233,6 +233,154 @@
 
    - Lỗi: `async/await` cần `try...catch` cho mỗi function, còn `Promise` dễ quản lý lỗi chung với `.catch()`.
 
+14. Trình bày js runtime envirorment ( nhớ nói cả mircrotask )
+
+   **JavaScript Runtime Environment** là môi trường mà JavaScript thực thi, bao gồm **Call Stack**, **Heap**, **Event Loop**, và **Queue**. 
+
+   - **Call Stack**: Nơi chứa các hàm đang được gọi. Lần lượt thực thi các hàm trong stack.
+   - **Heap**: Dùng để lưu trữ các đối tượng động.
+   - **Event Loop**: Kiểm tra và xử lý các task trong queue. Khi call stack trống, event loop sẽ chuyển task từ **Task Queue** sang call stack.
+
+    **Microtask Queue**:
+   - **Microtasks** (như `Promise.then()`) có độ ưu tiên cao hơn **Task Queue** (như `setTimeout`).
+   - Sau khi call stack trống, event loop sẽ xử lý tất cả microtasks trước khi tiếp tục với các task trong queue.
+
+   **Quy trình**: 
+      1. Thực thi hàm trong **Call Stack**.
+      2. Khi có **Microtasks**, event loop xử lý chúng trước.
+      3. Sau khi call stack và microtasks hoàn thành, chuyển sang task trong **Task Queue** (ví dụ, `setTimeout`).
+
+       Tóm tắt:
+         - **Call Stack**: Thực thi hàm.
+         - **Microtask Queue**: Ưu tiên cao, xử lý sau mỗi task.
+         - **Task Queue**: Xử lý sau microtasks.
+
+16. Các promise như all, race, any...
+   - `Promise.all()`: Chờ tất cả Promise hoàn thành.
+   - `Promise.race()`: Lấy kết quả của Promise đầu tiên hoàn thành.
+   - `Promise.any()`: Lấy kết quả của Promise đầu tiên thành công.
+   - `Promise.allSettled()`: Chờ tất cả Promise hoàn thành, trả về kết quả cho tất cả.
+
+17. cách để copy 1 object.
+
+   - `Object.assign()` và spread operator (...) sao chép nông.
+   - `JSON.parse(JSON.stringify())` sao chép sâu nhưng không sao chép các phương thức.
+18. Cách sao chép 1 array
+   - Spread operator (...), `slice()`, `Array.from()`, và `concat()` sao chép nông.
+
+
+### Hỏi về ReactJS
+
+1. Concept của reactjs là gì
+   - ReactJS là một thư viện JavaScript cho phép xây dựng giao diện người dùng bằng cách sử dụng các component và JSX.
+   - State, Props, Hooks và Virtual DOM là các khái niệm cốt lõi trong React giúp tăng hiệu suất và dễ dàng quản lý giao diện động.
+
+2. Cơ chế re-render của 1 component xảy ra như thế nào
+
+   - Re-render xảy ra khi state, props, hoặc context thay đổi.
+   - React sử dụng Virtual DOM và diffing  để so sánh và chỉ cập nhật những thay đổi cần thiết, tối ưu hóa hiệu suất.
+   - Các cơ chế như React.memo(), shouldComponentUpdate(), và useCallback() giúp kiểm soát việc re-render để tránh lặp lại không cần thiết.
+
+3. Phiên bản 18 có cải tiến gì
+
+   - **Automatic batching**
+      - Trước đây setState 2 lần thì app của các bạn cũng sẽ render 2 lần. Thay vì phải render 2 lần, do mình đổi  state 2 lần, thì version mới sẽ gom lại một lần để tạo ra state cuối cùng rồi render luôn.
+      - Transitions API  `startTransition` :  để đánh dấu các tác vụ có thể tạm dừng hoặc ưu tiên thấp.
+      - Cải tiến Suspense
+      - Server-Side Rendering with Streaming
+
+4. Phân biệt state vs props
+   - **State** là dữ liệu nội bộ, do component tự quản lý.
+   - **Props**: Dữ liệu từ cha truyền xuống, không thể thay đổi
+
+5. Controller vs uncontroller component
+
+   - **Controlled Component**: React kiểm soát toàn bộ dữ liệu (qua state).
+   - **Uncontrolled Component**: DOM tự quản lý dữ liệu (qua ref).
+
+6. Tại sao setState lại bất đồng bộ
+
+   -  Gom các lần gọi **setState** lại để giảm số lần re-render.
+   - Tránh xung đột khi nhiều **setState** được gọi liên tiếp.
+   - Phù hợp với React Lifecycle: Cập nhật **state** và re-render diễn ra cuối mỗi chu kỳ.
+
+   **Cách xử lý nếu cần giá trị mới ngay lập tức:**
+      - Dùng callback trong **setState**:
+
+      ```js
+         setState((prevState) => prevState + 1);
+
+7. useEffect với life cycle method
+
+   - `useEffect` thay thế: `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` trong class component
+   - Cách dùng:
+      - []: Chạy 1 lần sau khi mount.
+
+      - [dependency]: Chạy khi dependency thay đổi.
+
+      - return () => {}: Cleanup khi unmount.
+
+
+      #### ** So sánh với Lifecycle Methods**
+| **Lifecycle Method**          | **Tương ứng tron `useEffect`**                               |
+|--------------------------------|--------------------------------------------------------------|
+| `componentDidMount`            | `useEffect(() => { ... }, [])`                               |
+| `componentDidUpdate`           | `useEffect(() => { ... }, [dependency])`                     |
+| `componentWillUnmount`         | `useEffect(() => { return () => { ... }; }, [])`             |
+
+---
+
+
+8. Việc useEffect có depencies thay đổi sẽ run lại callback , react dùng cơ chế so sánh như thế nào
+
+   - React so sánh tham chiếu trong dependency array.
+      - số, chuỗi, boolean : So sánh giá trị. Nếu khác, chạy lại.
+      - Object, Array, Function : So sánh tham chiếu. Nếu tham chiếu thay đổi, chạy lại.
+      - Để tránh chạy lại không cần thiết, dùng useMemo hoặc useCallback để giữ tham chiếu cũ.
+
+   ```js
+      useEffect(() => {
+         console.log("Chạy lại");
+      }, [count]); // Chỉ chạy lại khi giá trị `count` thay đổi.
+
+      const obj = { a: 1 };
+      useEffect(() => {
+      console.log("Chạy lại");
+      }, [obj]); // Luôn chạy lại vì `obj` tạo ra tham chiếu mới mỗi lần render.
+
+9. useLayoutEffect vs useEffect? khi nào dùng useLayoutEffect
+
+      - **`useEffect`**:
+         - Chạy **sau khi giao diện được render**.
+         - Dùng cho side effects không ảnh hưởng trực tiếp đến DOM (e.g., fetch API, log).
+
+      - **`useLayoutEffect`**:
+         - Chạy **trước khi giao diện hiển thị**, sau khi DOM cập nhật.
+         - Dùng khi cần đo đạc hoặc thay đổi DOM **trực tiếp** (e.g., đo kích thước, sửa layout).
+
+
+10. React fragment nên dùng ko vì sao?
+
+   - Nên dùng React Fragment khi muốn nhóm nhiều phần tử mà không thêm thẻ DOM thừa, giúp DOM gọn gàng hơn và cải thiện hiệu suất.
+
+11. Các cách để optimize
+   - Sử dụng `React.memo`: Tối ưu component không cần re-render lại khi props không thay đổi.
+   - Sử dụng `useMemo` và `useCallback`: Memoize giá trị và hàm để tránh tính toán lại không cần thiết.
+   - Lazy Loading: Chia code và tải các phần cần thiết khi cần (e.g., React.lazy và Suspense).
+   - **Code splitting**: Tách mã nguồn thành các phần nhỏ, tải khi cần.
+
+   - **Debounce/Throttle**: Giảm số lần gọi hàm (e.g., khi tìm kiếm).
+
+   - **Virtualization**: Hiển thị một phần của danh sách lớn thay vì toàn bộ (e.g., react-window).
+   - **UsePureComponent**: Đảm bảo component chỉ re-render khi props hoặc state thay đổi.
+
+   - **Server-side rendering (SSR)**: Render phía server để cải thiện thời gian tải ban đầu.
+
+12. so sánh `usememo` vs `usecallback`.
+   - `useMemo`: Dùng để tối ưu giá trị.
+   - `useCallback`: Dùng để tối ưu hàm.
+
+
 ### Hỏi về Performance
 
 1. **Công cụ kiểm tra lỗi về hiệu suất tải trên trình duyệt?**
@@ -245,3 +393,5 @@
 
 2. **HTTP action là gì?**
    - Các phương thức dùng trong giao tiếp giữa client và server: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`.
+
+
