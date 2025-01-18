@@ -1,0 +1,9 @@
+{
+  "default": true,
+  "line-length": false,
+  "no-trailing-spaces": true,
+  "MD004": { "style": "consistent" },
+  "MD007": { "indent": 4 },
+  "MD003": { "style": "atx_closed" },
+  "MD029": { "style": "ordered" }
+}

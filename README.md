@@ -1,8 +1,5 @@
 # Những câu hỏi phỏng vấn được sưu tầm
 
-
-
-
 ### Hỏi về HTML
 
 1. **Virtual DOM là gì? Tại sao quan trọng?**
@@ -40,14 +37,29 @@
 
 8. **Semantic HTML là gì và tại sao nó quan trọng?**
    - Là HTML sử dụng các thẻ mang ý nghĩa rõ ràng (e.g., `<header>`, `<article>`, `<footer>`)
-   - **Quan trọng vì:** 
+   - **Quan trọng vì:**
      - Cải thiện SEO
      - Truy cập tốt hơn
      - Dễ bảo trì
 
 9. Metag là gì. ví dụ?
 
-   - Meta tag là thẻ HTML trong <head>, cung cấp thông tin về trang web cho công cụ tìm kiếm, trình duyệt, và mạng xã hội.
+   - Meta tag là thẻ HTML trong `<head>`, cung cấp thông tin về trang web cho công cụ tìm kiếm, trình duyệt, và mạng xã hội.
+
+10. Khi nhập URL và nhấn enter trên browser thì quá trình sau đó diễn ra ntn cho tới khi trang web đc hiển thị?
+
+- Nhập URL và phân giải DNS.
+- Gửi yêu cầu HTTP/HTTPS tới máy chủ.
+- Máy chủ trả về dữ liệu HTML và tài nguyên khác.
+- Trình duyệt phân tích HTML, CSS, và JavaScript.
+- Tải thêm tài nguyên (CSS, JS, hình ảnh).
+- Render và hiển thị trang web.
+
+11. Cơ chế SSR và SSG.
+
+- SSR (Server-Side Rendering): Render trang trên server mỗi khi người dùng truy cập. Dữ liệu luôn mới nhất, tốt cho SEO, nhưng tốc độ tải chậm hơn vì cần render lại mỗi yêu cầu.
+
+- SSG (Static Site Generation): Render trang trước khi người dùng truy cập, dữ liệu tĩnh, tốc độ tải nhanh, tốt cho SEO, nhưng không cập nhật dữ liệu mới ngay lập tức.
 
 ### Hỏi về CSS
 
@@ -97,24 +109,25 @@
 
 10. Độ ưu tiên selector
 
-   - Inline styles (style="color: red;") **>** ID selector (#id {})  **>** Class, attribute, pseudo-class (.class {}, [attr] {}, :hover) **>** Element, pseudo-element (h1 {}, ::before) **>**  Universal selector (* {})
+- Inline styles (style="color: red;") **>** ID selector (#id {})  **>** Class, attribute, pseudo-class (.class {}, [attr] {}, :hover) **>** Element, pseudo-element (h1 {}, ::before) **>**  Universal selector (* {})∏
 
 11. Thiết kế dàn hàng ngang 3 cột có độ rộng như nhau, chiếm toàn bộ màn hình không sử dụng flex, grid.
 
-   - Dùng float 
-   - Dùng inline-block
+- Dùng float
+- Dùng inline-block
+
 12. Responsive cho mobile, khi flex-direction: column thì các item trong 1 div xếp hàng dọc. thay vì xếp item 1 2 3. Nó có thể bị đảo vị trí thành 1 3 2. Nếu gặp tình huống này, cách giải quyết? ( ngoài cách bạn đang nghĩ còn cách nào )
 
-   - Dùng order
+- Dùng order
 
-13.  BEM là gì
+13. BEM là gì
 
-   - là một phương pháp đặt tên class trong CSS, giúp mã dễ đọc, bảo trì và tái sử dụng.
+- là một phương pháp đặt tên class trong CSS, giúp mã dễ đọc, bảo trì và tái sử dụng.
 
 14. SCSS là gì : tạo biến, mixin include, extend không
 
-   - Là một phần mở rộng của CSS, cung cấp cú pháp linh hoạt và nhiều tính năng mạnh mẽ giúp viết CSS dễ dàng hơn, như biến, mixin, extend, v.v.
-   - Tạo biến : 
+- Là một phần mở rộng của CSS, cung cấp cú pháp linh hoạt và nhiều tính năng mạnh mẽ giúp viết CSS dễ dàng hơn, như biến, mixin, extend, v.v.
+- Tạo biến :
 
       ```scss
       $primary-color: #3498db;
@@ -124,7 +137,7 @@
       font-size: $font-size;
       color: $primary-color;
       }
-   - Mixin và `@include`
+- Mixin và `@include`
 
       ```scss
       @mixin border-radius($radius) {
@@ -135,7 +148,7 @@
       .box {
       @include border-radius(10px);
       }
-   - Extend
+- Extend
 
       ```scss
          .message {
@@ -153,11 +166,11 @@
             @extend .message;
             background-color: #f2dede;
          }
+
 15. Trong flex, muốn thiết lập độ rộng cho các item, dùng thuộc tính nào.
       - `flex` là cách linh hoạt nhất để điều chỉnh kích thước các item trong flexbox.
       - `flex-basis` giúp thiết lập kích thước ban đầu của item.
 
-   
 ### Hỏi về Javascript
 
 1. **Ý nghĩa của biến `this`?**
@@ -203,38 +216,40 @@
 
 10. Phân biệt `call` bind `apply`
 
-   - `call`: Gọi hàm ngay lập tức, gán `this` và truyền tham số trực tiếp.
+- `call`: Gọi hàm ngay lập tức, gán `this` và truyền tham số trực tiếp.
 
       ```javascript
          greet.call(person, 'John');
 
-   - `apply`: Giống `call`, nhưng tham số truyền vào là một mảng.
+- `apply`: Giống `call`, nhưng tham số truyền vào là một mảng.
 
       ```javascript
        greet.apply(person, ['John', 30]);
 
-   - `bind`: Gán this và trả về hàm mới, có thể gọi sau này với tham số.
+- `bind`: Gán this và trả về hàm mới, có thể gọi sau này với tham số.
 
       ```javascript
          const boundGreet = greet.bind(person, 'John');
          boundGreet();
-   
+
 11. isNaN() vs Number.isNaN()
-   - `isNaN()`: Kiểm tra giá trị có phải là `NaN`, nhưng sẽ ép kiểu trước.
-   - `Number.isNaN()`: Kiểm tra chính xác giá trị có phải là `NaN` mà không ép kiểu.
+
+- `isNaN()`: Kiểm tra giá trị có phải là `NaN`, nhưng sẽ ép kiểu trước.
+- `Number.isNaN()`: Kiểm tra chính xác giá trị có phải là `NaN` mà không ép kiểu.
 
 12. Xử lý lỗi và create lỗi vs async await như thế nào
-   - `try...catch`: Dùng để bắt lỗi trong hàm `async`.
-   - `throw`: Tạo lỗi thủ công.
-   - `catch`: Bắt lỗi nếu có lỗi xảy ra trong `Promise` hoặc `async/await`.
+
+- `try...catch`: Dùng để bắt lỗi trong hàm `async`.
+- `throw`: Tạo lỗi thủ công.
+- `catch`: Bắt lỗi nếu có lỗi xảy ra trong `Promise` hoặc `async/await`.
 
 13. Tình huống bất lợi khi dùng async await mà promise sẽ khắc phục được
 
-   - `async/await` dễ đọc nhưng chạy tuần tự, không hiệu quả khi cần chạy song song.
+- `async/await` dễ đọc nhưng chạy tuần tự, không hiệu quả khi cần chạy song song.
 
-   - `Promise`: Dùng `Promise.all()` để chạy song song, hoặc `Promise.allSettled()` để tiếp tục xử lý dù có lỗi.
+- `Promise`: Dùng `Promise.all()` để chạy song song, hoặc `Promise.allSettled()` để tiếp tục xử lý dù có lỗi.
 
-   - Lỗi: `async/await` cần `try...catch` cho mỗi function, còn `Promise` dễ quản lý lỗi chung với `.catch()`.
+- Lỗi: `async/await` cần `try...catch` cho mỗi function, còn `Promise` dễ quản lý lỗi chung với `.catch()`.
 
 14. Trình bày JS Runtime Environment (nhớ nói cả Microtask)
 
@@ -243,8 +258,6 @@
       - **Call Stack**: Nơi chứa các hàm đang được gọi. Các hàm được thực thi lần lượt theo thứ tự LIFO (Last In, First Out).
       - **Heap**: Bộ nhớ dùng để lưu trữ các đối tượng động.
       - **Event Loop**: Thành phần quản lý việc xử lý các task trong hàng đợi (**Queue**). Khi **Call Stack** trống, **Event Loop** sẽ chuyển task từ **Task Queue** vào **Call Stack** để thực thi.
-
-
 
       **Microtask Queue**
          - **Microtasks** (như `Promise.then()`) có độ ưu tiên **cao hơn** so với **Task Queue** (như `setTimeout`).
@@ -255,27 +268,57 @@
          2. Khi **Call Stack** trống, **Event Loop** kiểm tra **Microtask Queue** và xử lý toàn bộ microtasks trước.
          3. Sau khi **Microtask Queue** hoàn thành, **Event Loop** sẽ chuyển sang xử lý các task trong **Task Queue** (nếu có).
 
-
-
       **Tóm tắt**
          - **Call Stack**: Thực thi các hàm đang được gọi.
          - **Microtask Queue**: Hàng đợi ưu tiên cao, xử lý sau mỗi lần **Call Stack** trống.
          - **Task Queue**: Xử lý sau khi tất cả microtasks đã hoàn thành.
 
-
 16. Các promise như all, race, any...
-   - `Promise.all()`: Chờ tất cả Promise hoàn thành.
-   - `Promise.race()`: Lấy kết quả của Promise đầu tiên hoàn thành.
-   - `Promise.any()`: Lấy kết quả của Promise đầu tiên thành công.
-   - `Promise.allSettled()`: Chờ tất cả Promise hoàn thành, trả về kết quả cho tất cả.
+
+- `Promise.all()`: Chờ tất cả Promise hoàn thành.
+- `Promise.race()`: Lấy kết quả của Promise đầu tiên hoàn thành.
+- `Promise.any()`: Lấy kết quả của Promise đầu tiên thành công.
+- `Promise.allSettled()`: Chờ tất cả Promise hoàn thành, trả về kết quả cho tất cả.
 
 17. cách để copy 1 object.
 
-   - `Object.assign()` và spread operator (...) sao chép nông.
-   - `JSON.parse(JSON.stringify())` sao chép sâu nhưng không sao chép các phương thức.
-18. Cách sao chép 1 array
-   - Spread operator (...), `slice()`, `Array.from()`, và `concat()` sao chép nông.
+- `Object.assign()` và spread operator (...) sao chép nông.
+- `JSON.parse(JSON.stringify())` sao chép sâu nhưng không sao chép các phương thức.
 
+18. Cách sao chép 1 array
+
+- Spread operator (...), `slice()`, `Array.from()`, và `concat()` sao chép nông.
+
+19. Các feature trong ES6 là gì ? Arrow function, spread, set, destructring, map, filter, reduce (map, filter, reduce khác gì nhau), Promise, String interpolation, Map, Set, Iterator, For-of, Class…
+
+- Arrow function: Cú pháp ngắn gọn cho hàm, không có this.
+- Spread Operator : Giải nén mảng/đối tượng.
+- Destructuring: Trích xuất giá trị từ mảng/đối tượng.
+- Map: Lưu trữ key-value.
+- Set: Lưu giá trị duy nhất.
+- Iterator & For-of: Lặp qua các đối tượng có thể lặp.
+- Class: Định nghĩa lớp và đối tượng.
+- Promise: Xử lý bất đồng bộ.
+- String Interpolation: Chèn giá trị vào chuỗi.
+- Map, Filter, Reduce:
+    - Map: Áp dụng hàm cho tất cả phần tử.
+    - Filter: Lọc phần tử theo điều kiện.
+    - Reduce: Gom nhóm thành một giá trị duy nhất.
+
+20. GET, POST là gì, khác nhau như thế nào. Giả sử muốn upload một file thì làm như thế nào
+
+- GET: Lấy dữ liệu từ server, không thay đổi dữ liệu, dữ liệu trong URL.
+- POST: Gửi dữ liệu đến server, thay đổi dữ liệu, dữ liệu trong body.
+
+Khác nhau: GET giới hạn dữ liệu trong URL, POST không giới hạn và dùng trong gửi file.
+
+- Upload file: Dùng POST với enctype="multipart/form-data":
+
+   ```js
+      <form action="/upload" method="POST" enctype="multipart/form data">
+         <input type="file" name="file" />
+         <button type="submit">Upload</button>
+      </form>
 
 ### Hỏi về ReactJS
 
@@ -308,7 +351,7 @@
 
 6. Tại sao setState lại bất đồng bộ
 
-   -  Gom các lần gọi **setState** lại để giảm số lần re-render.
+   - Gom các lần gọi **setState** lại để giảm số lần re-render.
    - Tránh xung đột khi nhiều **setState** được gọi liên tiếp.
    - Phù hợp với React Lifecycle: Cập nhật **state** và re-render diễn ra cuối mỗi chu kỳ.
 
@@ -328,8 +371,8 @@
 
       - return () => {}: Cleanup khi unmount.
 
+     #### **So sánh với Lifecycle Methods**
 
-      #### ** So sánh với Lifecycle Methods**
 | **Lifecycle Method**          | **Tương ứng tron `useEffect`**                               |
 |--------------------------------|--------------------------------------------------------------|
 | `componentDidMount`            | `useEffect(() => { ... }, [])`                               |
@@ -337,7 +380,6 @@
 | `componentWillUnmount`         | `useEffect(() => { return () => { ... }; }, [])`             |
 
 ---
-
 
 8. Việc useEffect có depencies thay đổi sẽ run lại callback , react dùng cơ chế so sánh như thế nào
 
@@ -366,28 +408,41 @@
          - Chạy **trước khi giao diện hiển thị**, sau khi DOM cập nhật.
          - Dùng khi cần đo đạc hoặc thay đổi DOM **trực tiếp** (e.g., đo kích thước, sửa layout).
 
-
 10. React fragment nên dùng ko vì sao?
 
-   - Nên dùng React Fragment khi muốn nhóm nhiều phần tử mà không thêm thẻ DOM thừa, giúp DOM gọn gàng hơn và cải thiện hiệu suất.
+- Nên dùng React Fragment khi muốn nhóm nhiều phần tử mà không thêm thẻ DOM thừa, giúp DOM gọn gàng hơn và cải thiện hiệu suất.
 
 11. Các cách để optimize
-   - Sử dụng `React.memo`: Tối ưu component không cần re-render lại khi props không thay đổi.
-   - Sử dụng `useMemo` và `useCallback`: Memoize giá trị và hàm để tránh tính toán lại không cần thiết.
-   - Lazy Loading: Chia code và tải các phần cần thiết khi cần (e.g., React.lazy và Suspense).
-   - **Code splitting**: Tách mã nguồn thành các phần nhỏ, tải khi cần.
 
-   - **Debounce/Throttle**: Giảm số lần gọi hàm (e.g., khi tìm kiếm).
+- Sử dụng `React.memo`: Tối ưu component không cần re-render lại khi props không thay đổi.
+- Sử dụng `useMemo` và `useCallback`: Memoize giá trị và hàm để tránh tính toán lại không cần thiết.
+- Lazy Loading: Chia code và tải các phần cần thiết khi cần (e.g., React.lazy và Suspense).
+- **Code splitting**: Tách mã nguồn thành các phần nhỏ, tải khi cần.
 
-   - **Virtualization**: Hiển thị một phần của danh sách lớn thay vì toàn bộ (e.g., react-window).
-   - **UsePureComponent**: Đảm bảo component chỉ re-render khi props hoặc state thay đổi.
+- **Debounce/Throttle**: Giảm số lần gọi hàm (e.g., khi tìm kiếm).
 
-   - **Server-side rendering (SSR)**: Render phía server để cải thiện thời gian tải ban đầu.
+- **Virtualization**: Hiển thị một phần của danh sách lớn thay vì toàn bộ (e.g., react-window).
+- **UsePureComponent**: Đảm bảo component chỉ re-render khi props hoặc state thay đổi.
+
+- **Server-side rendering (SSR)**: Render phía server để cải thiện thời gian tải ban đầu.
 
 12. so sánh `usememo` vs `usecallback`.
-   - `useMemo`: Dùng để tối ưu giá trị.
-   - `useCallback`: Dùng để tối ưu hàm.
 
+- `useMemo`: Dùng để tối ưu giá trị.
+- `useCallback`: Dùng để tối ưu hàm.
+
+13. Ưu điểm và nhược điểm của Micro-frontend.
+
+- Quản lý độc lập, tái sử dụng, dễ mở rộng, cho phép dùng công nghệ riêng cho từng phần.
+Nhược điểm của Micro-frontend:
+
+- Tăng độ phức tạp, thời gian tải lâu hơn, khó đồng nhất UI/UX, quản lý trạng thái toàn cục phức tạp.
+
+14. Tại sao React lại sử dụng Virtual DOM.
+
+      React sử dụng Virtual DOM để cải thiện hiệu suất. Khi có sự thay đổi trong trạng thái ứng dụng, React sẽ cập nhật Virtual DOM thay vì trực tiếp thay đổi real DOM. Sau đó, React so sánh Virtual DOM mới với Virtual DOM cũ để tìm ra sự khác biệt (diffing) và chỉ cập nhật phần thay đổi trên real DOM. Điều này giúp giảm thiểu số lần thao tác với real DOM, từ đó cải thiện tốc độ và hiệu suất của ứng dụng.
+
+15.
 
 ### Hỏi về Performance
 
@@ -401,5 +456,3 @@
 
 2. **HTTP action là gì?**
    - Các phương thức dùng trong giao tiếp giữa client và server: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`.
-
-
