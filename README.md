@@ -1,5 +1,7 @@
 # Những câu hỏi phỏng vấn được sưu tầm
 
+**by** Nguyễn Thành Lộc
+
 ### Hỏi về HTML
 
 1. **Virtual DOM là gì? Tại sao quan trọng?**
