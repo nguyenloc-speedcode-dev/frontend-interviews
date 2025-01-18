@@ -1,4 +1,4 @@
-# Câu hỏi phỏng vấn
+# Những câu hỏi phỏng vấn được sưu tầm
 
 ### Hỏi về HTML
 
@@ -42,6 +42,10 @@
      - Truy cập tốt hơn
      - Dễ bảo trì
 
+9. Metag là gì. ví dụ?
+
+   - Meta tag là thẻ HTML trong <head>, cung cấp thông tin về trang web cho công cụ tìm kiếm, trình duyệt, và mạng xã hội.
+
 ### Hỏi về CSS
 
 1. **Lợi / hại của việc sử dụng External Style Sheets?**
@@ -75,6 +79,82 @@
    - **rem:** Kích thước dựa trên font-size của root (html)
    - **vw, vh:** Tỷ lệ theo chiều rộng và chiều cao của viewport
 
+8. Trình bày về position các kiểu position
+   - **static:** Mặc định, phần tử được định vị theo dòng chảy tự nhiên của trang.
+   - **relative**  Định vị phần tử so với vị trí ban đầu của nó.
+   - **absolute** Định vị phần tử so với phần tử cha gần nhất có position khác static
+   - **sticky** Kết hợp giữa **relative** và **fixed**, phần tử dính vào vị trí khi cuộn đến một điểm nhất định.
+   - **fixed** Định vị phần tử cố định trên cửa sổ trình duyệt, không thay đổi khi cuộn trang
+
+9. Phân biệt block, inline, inline block.
+
+   - **Block** Toàn dòng, có thể chỉnh kích thước
+   - **inline**  Cùng dòng, không chỉnh kích thước
+   - **inline-block** Cùng dòng, nhưng chỉnh được kích thước
+
+10. Độ ưu tiên selector
+
+   - Inline styles (style="color: red;") **>** ID selector (#id {})  **>** Class, attribute, pseudo-class (.class {}, [attr] {}, :hover) **>** Element, pseudo-element (h1 {}, ::before) **>**  Universal selector (* {})
+
+11. Thiết kế dàn hàng ngang 3 cột có độ rộng như nhau, chiếm toàn bộ màn hình không sử dụng flex, grid.
+
+   - Dùng float 
+   - Dùng inline-block
+12. Responsive cho mobile, khi flex-direction: column thì các item trong 1 div xếp hàng dọc. thay vì xếp item 1 2 3. Nó có thể bị đảo vị trí thành 1 3 2. Nếu gặp tình huống này, cách giải quyết? ( ngoài cách bạn đang nghĩ còn cách nào )
+
+   - Dùng order
+
+13.  BEM là gì
+
+   - là một phương pháp đặt tên class trong CSS, giúp mã dễ đọc, bảo trì và tái sử dụng.
+
+14. SCSS là gì : tạo biến, mixin include, extend không
+
+   - Là một phần mở rộng của CSS, cung cấp cú pháp linh hoạt và nhiều tính năng mạnh mẽ giúp viết CSS dễ dàng hơn, như biến, mixin, extend, v.v.
+   - Tạo biến : 
+
+      ```scss
+      $primary-color: #3498db;
+      $font-size: 16px;
+
+      body {
+      font-size: $font-size;
+      color: $primary-color;
+      }
+   - Mixin và `@include`
+
+      ```scss
+      @mixin border-radius($radius) {
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-radius: $radius;
+      }
+      .box {
+      @include border-radius(10px);
+      }
+   - Extend
+
+      ```scss
+         .message {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+         }
+
+         .success {
+            @extend .message;
+            background-color: #dff0d8;
+         }
+
+         .error {
+            @extend .message;
+            background-color: #f2dede;
+         }
+15. Trong flex, muốn thiết lập độ rộng cho các item, dùng thuộc tính nào.
+      - `flex` là cách linh hoạt nhất để điều chỉnh kích thước các item trong flexbox.
+      - `flex-basis` giúp thiết lập kích thước ban đầu của item.
+
+   
 ### Hỏi về Javascript
 
 1. **Ý nghĩa của biến `this`?**
@@ -104,6 +184,54 @@
 
 8. **Promise trong JS là gì?**
    - Là một đối tượng đại diện cho giá trị có thể có trong tương lai, có 3 trạng thái: Pending, Resolved (Fulfilled), Rejected.
+
+9. Phân biệt arrow function vs declare function
+   - `Arrow function`:
+
+      - Cú pháp ngắn gọn: `const sum = (a, b) => a + b`;
+      - Không có this riêng, kế thừa từ phạm vi bên ngoài.
+      - Không hỗ trợ arguments.
+      - Không thể dùng với `new`.
+   - `Regular function` (`Regular Function`)
+      - Cần từ khóa function: `function sum(a, b) { return a + b; }`
+      - Có `this` riêng, giá trị this thay đổi theo cách gọi hàm.
+      - Hỗ trợ arguments.
+      - Có thể dùng với `new` để tạo đối tượng.
+
+10. Phân biệt `call` bind `apply`
+
+   - `call`: Gọi hàm ngay lập tức, gán `this` và truyền tham số trực tiếp.
+
+      ```javascript
+      ` greet.call(person, 'John');`
+
+   - `apply`: Giống `call`, nhưng tham số truyền vào là một mảng.
+
+      ```javascript
+      `greet.apply(person, ['John', 30]);`
+
+   - `bind`: Gán this và trả về hàm mới, có thể gọi sau này với tham số.
+
+      ```javascript
+         const boundGreet = greet.bind(person, 'John');
+         boundGreet();
+   
+11. isNaN() vs Number.isNaN()
+   - `isNaN()`: Kiểm tra giá trị có phải là `NaN`, nhưng sẽ ép kiểu trước.
+   - `Number.isNaN()`: Kiểm tra chính xác giá trị có phải là `NaN` mà không ép kiểu.
+
+12. Xử lý lỗi và create lỗi vs async await như thế nào
+   - `try...catch`: Dùng để bắt lỗi trong hàm `async`.
+   - `throw`: Tạo lỗi thủ công.
+   - `catch`: Bắt lỗi nếu có lỗi xảy ra trong `Promise` hoặc `async/await`.
+
+13. Tình huống bất lợi khi dùng async await mà promise sẽ khắc phục được
+
+   - `async/await` dễ đọc nhưng chạy tuần tự, không hiệu quả khi cần chạy song song.
+
+   - `Promise`: Dùng `Promise.all()` để chạy song song, hoặc `Promise.allSettled()` để tiếp tục xử lý dù có lỗi.
+
+   - Lỗi: `async/await` cần `try...catch` cho mỗi function, còn `Promise` dễ quản lý lỗi chung với `.catch()`.
 
 ### Hỏi về Performance
 
