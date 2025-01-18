@@ -1,6 +1,7 @@
 # Những câu hỏi phỏng vấn được sưu tầm
 
-**by** Nguyễn Thành Lộc
+
+
 
 ### Hỏi về HTML
 
@@ -235,27 +236,32 @@
 
    - Lỗi: `async/await` cần `try...catch` cho mỗi function, còn `Promise` dễ quản lý lỗi chung với `.catch()`.
 
-14. Trình bày js runtime envirorment ( nhớ nói cả mircrotask )
+14. Trình bày JS Runtime Environment (nhớ nói cả Microtask)
 
-   **JavaScript Runtime Environment** là môi trường mà JavaScript thực thi, bao gồm **Call Stack**, **Heap**, **Event Loop**, và **Queue**. 
+      **JavaScript Runtime Environment** là môi trường mà JavaScript thực thi, bao gồm các thành phần chính:
 
-   - **Call Stack**: Nơi chứa các hàm đang được gọi. Lần lượt thực thi các hàm trong stack.
-   - **Heap**: Dùng để lưu trữ các đối tượng động.
-   - **Event Loop**: Kiểm tra và xử lý các task trong queue. Khi call stack trống, event loop sẽ chuyển task từ **Task Queue** sang call stack.
+      - **Call Stack**: Nơi chứa các hàm đang được gọi. Các hàm được thực thi lần lượt theo thứ tự LIFO (Last In, First Out).
+      - **Heap**: Bộ nhớ dùng để lưu trữ các đối tượng động.
+      - **Event Loop**: Thành phần quản lý việc xử lý các task trong hàng đợi (**Queue**). Khi **Call Stack** trống, **Event Loop** sẽ chuyển task từ **Task Queue** vào **Call Stack** để thực thi.
 
-    **Microtask Queue**:
-   - Microtasks (như `Promise.then()`) có độ ưu tiên cao hơn **Task Queue** (như `setTimeout`).
-   - Sau khi call stack trống, event loop sẽ xử lý tất cả microtasks trước khi tiếp tục với các task trong queue.
 
-   **Quy trình**: 
-      1. Thực thi hàm trong **Call Stack**.
-      2. Khi có **Microtasks**, event loop xử lý chúng trước.
-      3. Sau khi call stack và microtasks hoàn thành, chuyển sang task trong **Task Queue** (ví dụ, `setTimeout`).
 
-       Tóm tắt:
-         - **Call Stack**: Thực thi hàm.
-         - **Microtask Queue**: Ưu tiên cao, xử lý sau mỗi task.
-         - **Task Queue**: Xử lý sau microtasks.
+      **Microtask Queue**
+         - **Microtasks** (như `Promise.then()`) có độ ưu tiên **cao hơn** so với **Task Queue** (như `setTimeout`).
+         - Sau khi **Call Stack** trống, **Event Loop** sẽ xử lý tất cả các microtasks trong **Microtask Queue** trước khi chuyển sang **Task Queue**.
+
+      **Quy trình hoạt động**
+         1. Thực thi các hàm trong **Call Stack**.
+         2. Khi **Call Stack** trống, **Event Loop** kiểm tra **Microtask Queue** và xử lý toàn bộ microtasks trước.
+         3. Sau khi **Microtask Queue** hoàn thành, **Event Loop** sẽ chuyển sang xử lý các task trong **Task Queue** (nếu có).
+
+
+
+      **Tóm tắt**
+         - **Call Stack**: Thực thi các hàm đang được gọi.
+         - **Microtask Queue**: Hàng đợi ưu tiên cao, xử lý sau mỗi lần **Call Stack** trống.
+         - **Task Queue**: Xử lý sau khi tất cả microtasks đã hoàn thành.
+
 
 16. Các promise như all, race, any...
    - `Promise.all()`: Chờ tất cả Promise hoàn thành.
