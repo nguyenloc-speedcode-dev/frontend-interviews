@@ -1,5 +1,13 @@
 # Những câu hỏi phỏng vấn được sưu tầm
 
+# Menu
+
+## 1. [Hỏi về HTML](#hỏi-về-html)
+
+## 2. [Hỏi về CSS](#hỏi-về-css)
+
+## 3. [Hỏi về Javascript](#hỏi-về-javascript)
+
 ### Hỏi về HTML
 
 1. **Virtual DOM là gì? Tại sao quan trọng?**
@@ -109,14 +117,14 @@
 
 10. Độ ưu tiên selector
 
-- Inline styles (style="color: red;") **>** ID selector (#id {})  **>** Class, attribute, pseudo-class (.class {}, [attr] {}, :hover) **>** Element, pseudo-element (h1 {}, ::before) **>**  Universal selector (* {})∏
+- Inline styles (**style="color: red;"**) **>** ID selector (#id {})  **>** Class, attribute, pseudo-class (.class {}, [attr] {}, :hover) **>** Element, pseudo-element (h1 {}, ::before) **>**  Universal selector (* {})∏
 
 11. Thiết kế dàn hàng ngang 3 cột có độ rộng như nhau, chiếm toàn bộ màn hình không sử dụng flex, grid.
 
 - Dùng float
 - Dùng inline-block
 
-12. Responsive cho mobile, khi flex-direction: column thì các item trong 1 div xếp hàng dọc. thay vì xếp item 1 2 3. Nó có thể bị đảo vị trí thành 1 3 2. Nếu gặp tình huống này, cách giải quyết? ( ngoài cách bạn đang nghĩ còn cách nào )
+12. Responsive cho mobile, khi **flex-direction: column** thì các item trong 1 div xếp hàng dọc. thay vì xếp item 1 2 3. Nó có thể bị đảo vị trí thành 1 3 2. Nếu gặp tình huống này, cách giải quyết? ( ngoài cách bạn đang nghĩ còn cách nào )
 
 - Dùng order
 
@@ -129,28 +137,29 @@
 - Là một phần mở rộng của CSS, cung cấp cú pháp linh hoạt và nhiều tính năng mạnh mẽ giúp viết CSS dễ dàng hơn, như biến, mixin, extend, v.v.
 - Tạo biến :
 
-      ```scss
-      $primary-color: #3498db;
-      $font-size: 16px;
+   ```scss
+         $primary-color: #3498db;
+         $font-size: 16px;
 
-      body {
-      font-size: $font-size;
-      color: $primary-color;
-      }
+         body {
+            font-size: $font-size;
+            color: $primary-color;
+         }
+
 - Mixin và `@include`
 
-      ```scss
+   ```scss
       @mixin border-radius($radius) {
-      -webkit-border-radius: $radius;
-      -moz-border-radius: $radius;
-      border-radius: $radius;
+         -webkit-border-radius: $radius;
+         -moz-border-radius: $radius;
+         border-radius: $radius;
       }
       .box {
-      @include border-radius(10px);
+          @include border-radius(10px);
       }
 - Extend
 
-      ```scss
+   ```scss
          .message {
             padding: 10px;
             border: 1px solid #ccc;
@@ -218,17 +227,17 @@
 
 - `call`: Gọi hàm ngay lập tức, gán `this` và truyền tham số trực tiếp.
 
-      ```javascript
+   ```javascript
          greet.call(person, 'John');
 
 - `apply`: Giống `call`, nhưng tham số truyền vào là một mảng.
 
-      ```javascript
+   ```javascript
        greet.apply(person, ['John', 30]);
 
 - `bind`: Gán this và trả về hàm mới, có thể gọi sau này với tham số.
 
-      ```javascript
+   ```javascript
          const boundGreet = greet.bind(person, 'John');
          boundGreet();
 
@@ -319,6 +328,8 @@ Khác nhau: GET giới hạn dữ liệu trong URL, POST không giới hạn và
          <input type="file" name="file" />
          <button type="submit">Upload</button>
       </form>
+
+
 
 ### Hỏi về ReactJS
 
@@ -442,7 +453,27 @@ Nhược điểm của Micro-frontend:
 
       React sử dụng Virtual DOM để cải thiện hiệu suất. Khi có sự thay đổi trong trạng thái ứng dụng, React sẽ cập nhật Virtual DOM thay vì trực tiếp thay đổi real DOM. Sau đó, React so sánh Virtual DOM mới với Virtual DOM cũ để tìm ra sự khác biệt (diffing) và chỉ cập nhật phần thay đổi trên real DOM. Điều này giúp giảm thiểu số lần thao tác với real DOM, từ đó cải thiện tốc độ và hiệu suất của ứng dụng.
 
-15.
+15. ReactJs và VueJs khác nhau như thế nào ?
+
+- ReactJS: Thư viện UI, sử dụng JSX, yêu cầu thêm thư viện để hoàn thiện ứng dụng, phù hợp cho dự án lớn.
+- VueJS: Framework hoàn chỉnh, sử dụng template syntax, dễ học, tích hợp sẵn tính năng như quản lý trạng thái, phù hợp cho dự án nhỏ và vừa.
+
+16. Context và Redux khác nhau như thế nào ?
+
+- Context:
+
+    - Được tích hợp sẵn trong React.
+    - Phù hợp với quản lý trạng thái ở mức độ nhỏ và trung bình.
+    - Thích hợp cho ứng dụng không quá phức tạp, ít thao tác cập nhật trạng thái.
+- Redux:
+
+    - Là thư viện quản lý trạng thái độc lập.
+    - Phù hợp cho các ứng dụng lớn, phức tạp với nhiều thành phần cần chia sẻ trạng thái.
+    - Cần nhiều boilerplate code, nhưng hỗ trợ tốt cho việc quản lý trạng thái phức tạp và theo dõi trạng thái qua middleware.
+
+17. Khi nào dùng `useCallback`?
+
+Dùng useCallback khi bạn muốn "ghi nhớ" một hàm, tránh tạo lại hàm mỗi khi component render lại, giúp tiết kiệm tài nguyên và tối ưu hiệu suất, nhất là khi hàm được truyền xuống component con.
 
 ### Hỏi về Performance
 
