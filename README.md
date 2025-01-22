@@ -8,6 +8,10 @@
 
 ## 3. [Hỏi về Javascript](#hỏi-về-javascript)
 
+## 4. [Hỏi về TypeScript](#hỏi-về-typescript)
+
+## 5. [Hỏi về ReactJs](#hỏi-về-reactjs)
+
 ### Hỏi về HTML
 
 1. **Virtual DOM là gì? Tại sao quan trọng?**
@@ -68,6 +72,14 @@
 - SSR (Server-Side Rendering): Render trang trên server mỗi khi người dùng truy cập. Dữ liệu luôn mới nhất, tốt cho SEO, nhưng tốc độ tải chậm hơn vì cần render lại mỗi yêu cầu.
 
 - SSG (Static Site Generation): Render trang trước khi người dùng truy cập, dữ liệu tĩnh, tốc độ tải nhanh, tốt cho SEO, nhưng không cập nhật dữ liệu mới ngay lập tức.
+
+12. So sánh SSR , SSG và CSR
+
+- SSR: Render tại server, nội dung luôn cập nhật, tốt cho SEO nhưng chậm hơn.
+
+- SSG: Render tĩnh khi build, nhanh nhưng không linh hoạt.
+
+- CSR: Render trên trình duyệt, mượt mà nhưng SEO và tốc độ tải ban đầu kém hơn.
 
 ### Hỏi về CSS
 
@@ -331,6 +343,23 @@ Khác nhau: GET giới hạn dữ liệu trong URL, POST không giới hạn và
 
 
 
+### Hỏi về TypeScript
+
+1. Lấy ra 5 trường với typescript
+   TypeScript cung cấp tiện ích Pick để tạo một kiểu dữ liệu mới chỉ chứa các trường mong muốn:
+
+   ```typescript
+       type UserSubset = Pick<User, "id" | "name" | "age" | "email" |"address">;
+
+      const subset: UserSubset = {
+         id: 1,
+         name: "Alice",
+         age: 25,
+         email: "<alice@example.com>",
+         address: "123 Main St",
+      };
+
+
 ### Hỏi về ReactJS
 
 1. Concept của reactjs là gì
@@ -473,7 +502,13 @@ Nhược điểm của Micro-frontend:
 
 17. Khi nào dùng `useCallback`?
 
-Dùng useCallback khi bạn muốn "ghi nhớ" một hàm, tránh tạo lại hàm mỗi khi component render lại, giúp tiết kiệm tài nguyên và tối ưu hiệu suất, nhất là khi hàm được truyền xuống component con.
+- Có vấn đề về hiệu suất (ví dụ: danh sách lớn hoặc component con sử dụng memoization).
+- Hàm được truyền xuống component con và bạn muốn kiểm soát sự tái tạo của nó.
+
+18. Khi nào dùng `useMemo`
+
+- Dùng useMemo: Khi cần ghi nhớ kết quả của phép tính tốn kém hoặc giữ tham chiếu ổn định.
+- Không cần useMemo: Nếu phép tính đơn giản hoặc dependency thay đổi liên tục.
 
 ### Hỏi về Performance
 
